@@ -3,6 +3,12 @@ import gdal
 from gdalconst import *
 import numpy as np
 import time
+import sys
+
+def setcwd():
+    
+    cwd = os.getcwd()
+    return cwd
 
 def findMTL(cwd):
     """Finds and metadata file and returns its name string."""
@@ -13,10 +19,9 @@ def findMTL(cwd):
             fn = f
 
     if fn == None:
-        print 'Cannot find Fmask output.'
+        print 'Cannot find metadata file.'
         sys.exit(1)
     else:
-        print 'Found: ' + fn
         return fn
 
 def modifyName(nom):
@@ -27,10 +32,11 @@ def modifyName(nom):
 def collectValues(cwd):
     """Reads metadata txt file and retrieves and then returns a list of calibrateRadiance values."""
     mtl = findMTL(cwd)
+    openMTL = open(mtl, 'r')
     rescaleValues = {} 
-     start = False
+    start = False
     #Collect calibrateRadiance values from metadata file
-    for i in f:
+    for i in openMTL:
         if 'GROUP = RADIOMETRIC_RESCALING' in i: 
             start = True
         elif start:
@@ -39,6 +45,7 @@ def collectValues(cwd):
                 rescaleValues[a[0].strip()] = float(a[1].strip())            
         if ' END_GROUP = RADIOMETRIC_RESCALING' in i:
             break
+    openMTL.close()
     return rescaleValues
 
 def sortValues(d):  
@@ -84,8 +91,11 @@ def calibrateRadiance(cwd):
     thermList = []
     resValue = collectValues(cwd)
     tups = sortValues(resValue)
+    dirlist = os.listdir(cwd)
     
-    for f in d:
+    print resValue
+    
+    for f in dirlist:
         if 'B10' in f:
             thermList.append(f)
         elif 'B11' in f: 
@@ -98,7 +108,10 @@ def calibrateRadiance(cwd):
             thermList.append(f)
         elif '.TIF' in f:
             tifList.append(f)
-            
+
+    print tifList
+    print thermList
+    print tups
     for i,j,k in zip(tifList,tups[0],tups[1]):
         ds = gdal.Open(i, GA_ReadOnly)
         cols = ds.RasterXSize
@@ -157,15 +170,10 @@ def calibrateThermal(band, tAdd, tMult, resMain):
             
 def main():
     start = time.time()
+    workdir = setcwd()
     
-    fn = 'LT51140531995292CLT00_MTL.txt'
-    openFn = open(fn, 'r')
-    
-    workSpace = os.listdir('C:\\Users\\G Torres\\Desktop\\GEOG 213 DATA PROCESSING\\1995292')
-    calibrateRadiance(workSpace, openFn)
+    calibrateRadiance(workdir)
 
-    openFn.close()
-    
     print time.time()-start, 'seconds'
     
 if __name__=='__main__':

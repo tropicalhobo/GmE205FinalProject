@@ -4,6 +4,7 @@ import numpy as np
 import numpy.ma as ma
 import time as tm
 import os
+import sys
 
 def setcwd():
     
@@ -36,11 +37,15 @@ def cloudmask(cloud, cwd):
 
     tifList = []
     listdir = os.listdir(cwd)
-
+    
     for f in listdir:
         if '.TIF' in f:
             tifList.append(f)
-
+        else:
+            pass
+        
+    print tifList
+    
     if len(tifList) == 0:
         print 'Cannot find tif images.'
         sys.exit(1)
@@ -49,11 +54,12 @@ def cloudmask(cloud, cwd):
     cloudBand = cloudClass.GetRasterBand(1)
 
     #iterate by every tif image in directory
-    for i in listdir:
+    for i in tifList:
         landsatImg = gdal.Open(i, GA_ReadOnly)
 
         if landsatImg == None:
             print 'Cannot find Landsat Image.'
+            sys.exit(1)
 
         #retrieve image attributes
         cols, rows = landsatImg.RasterXSize, landsatImg.RasterYSize
