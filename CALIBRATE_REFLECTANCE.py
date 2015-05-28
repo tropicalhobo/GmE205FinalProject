@@ -110,10 +110,7 @@ def calibrateReflectance(cwd,sunElev):
               
 def main():
     start = time.time()
-
-    wSpace = os.listdir('C:\\Users\\G Torres\\Desktop\\GEOG 213 DATA PROCESSING\\1995292')
-    mtl = 'LT51140531995292CLT00_MTL.txt'
-    ersun = 'EARTH-SUN_DISTANCE_AU.txt'
+   
     sunElevation = collectSunElev(mtl)
     doy = retrieveDOY(mtl)
     distance = earthSunDist(ersun, doy)
