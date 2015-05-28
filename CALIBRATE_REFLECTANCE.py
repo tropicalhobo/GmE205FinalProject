@@ -7,7 +7,7 @@ from math import pi, sin
 import sys
 
 def setcwd():
-    
+    """Sets current working directory of the script."""
     cwd = os.getcwd()
     return cwd
 
@@ -26,6 +26,9 @@ def findMTL(cwd):
         return fn
 
 def findDistance(cwd):
+    """Finds the text file containing
+    AU distance between sun and earth
+    on a particular DOY."""
     fn = None
     workdir = os.listdir(cwd)
     for f in workdir:
@@ -41,6 +44,8 @@ def findDistance(cwd):
         return fn
 
 def earthSunDist(txtfile, doy):
+    """Retrieves AU distance between sun and earth
+    for a particular DOY."""
     txt = open(txtfile,'r')
     distance = 0
     for i in txt:
@@ -52,10 +57,13 @@ def earthSunDist(txtfile, doy):
     return distance
     
 def retrieveDOY(fN):
+    """Retrieves DOY from the name string
+    of a Landsat image file."""
     s = fN.strip().split('_')
     return s[0][13:16]
                
 def collectSunElev(f):
+    """Collects sun elevation from the image metadata file."""
     txt = open(f, 'r')
     for i in txt:
         if 'SUN_ELEVATION' in i:
@@ -71,6 +79,7 @@ def modifyName(nom):
     return fn[0]+'_REFLECTANCE.TIF'
 
 def calibrateReflectance(cwd,sunElev):
+    """Calibrates radiance image to reflectance."""
     caList = [] 
     eSun = {1:1997,2:1812,3:1533,4:1039,5:230.8,7:84.90,8:1362}
     dist = earthSunDist()
