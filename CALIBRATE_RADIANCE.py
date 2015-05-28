@@ -4,10 +4,31 @@ from gdalconst import *
 import numpy as np
 import time
 
-def collectValues(f):
+def findMTL(cwd):
+    """Finds and metadata file and returns its name string."""
+    listdir = os.listdir(cwd)
+    fn = None
+    for f in listdir:
+        if '_MTL.txt' in f:
+            fn = f
+
+    if fn == None:
+        print 'Cannot find Fmask output.'
+        sys.exit(1)
+    else:
+        print 'Found: ' + fn
+        return fn
+
+def modifyName(nom):
+    """Returns modified input file name string."""
+    fn = nom.strip().split('.TIF')
+    return fn[0]+'_CALIBRATED.TIF'
+
+def collectValues(cwd):
     """Reads metadata txt file and retrieves and then returns a list of calibrateRadiance values."""
+    mtl = findMTL(cwd)
     rescaleValues = {} 
-    start = False
+     start = False
     #Collect calibrateRadiance values from metadata file
     for i in f:
         if 'GROUP = RADIOMETRIC_RESCALING' in i: 
@@ -57,11 +78,11 @@ def sortValues(d):
     return tup
     #print sorted(mult), '\n', sorted(add),'\n', sorted(thermAdd),'\n', sorted(therMult)
 
-def calibrateRadiance(d, fN):
+def calibrateRadiance(cwd):
     """Opens raw .TIF images and applies radiometric calibrateRadiance constants."""
     tifList = []
     thermList = []
-    resValue = collectValues(fN)
+    resValue = collectValues(cwd)
     tups = sortValues(resValue)
     
     for f in d:
@@ -133,11 +154,6 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         ds = None
         data = None
         oDs = None
-
-def modifyName(nom):
-    """Returns modified input file name string."""
-    fn = nom.strip().split('.TIF')
-    return fn[0]+'_CALIBRATED.TIF'
             
 def main():
     start = time.time()
