@@ -11,6 +11,20 @@ def setcwd():
     cwd = os.getcwd()
     return cwd
 
+def findMTL(cwd):
+    """Finds and metadata file and returns its name string."""
+    listdir = os.listdir(cwd)
+    fn = None
+    for f in listdir:
+        if '_MTL.txt' in f:
+            fn = f
+
+    if fn == None:
+        print 'Cannot find metadata file.'
+        sys.exit(1)
+    else:
+        return fn
+
 def findDistance(cwd):
     fn = None
     workdir = os.listdir(cwd)
@@ -26,24 +40,40 @@ def findDistance(cwd):
     else:
         return fn
 
-def findMTL(cwd):
-    """Finds and metadata file and returns its name string."""
-    listdir = os.listdir(cwd)
-    fn = None
-    for f in listdir:
-        if '_MTL.txt' in f:
-            fn = f
+def earthSunDist(txtfile, doy):
+    txt = open(txtfile,'r')
+    distance = 0
+    for i in txt:
+        if doy in i:
+            line = i.strip().split('\t')
+            distance = float(line[1])
+        else:
+            'Cannot find date of year.'
+    return distance
+    
+def retrieveDOY(fN):
+    s = fN.strip().split('_')
+    return s[0][13:16]
+               
+def collectSunElev(f):
+    txt = open(f, 'r')
+    for i in txt:
+        if 'SUN_ELEVATION' in i:
+            value = i.strip().split('=')
+            return (pi/180)*float(value[1])
+        else:
+            pass
+    close.txt()
 
-    if fn == None:
-        print 'Cannot find metadata file.'
-        sys.exit(1)
-    else:
-        return fn
+def modifyName(nom):
+    """Returns modified input file name string."""
+    fn = nom.strip().split('_RADIANCE.TIF')
+    return fn[0]+'_REFLECTANCE.TIF'
 
-def calibrateReflectance(cwd,dist,sunElev):
+def calibrateReflectance(cwd,sunElev):
     caList = [] 
     eSun = {1:1997,2:1812,3:1533,4:1039,5:230.8,7:84.90,8:1362}
-    dist = findDistance(cwd)
+    dist = earthSunDist()
     
     for i in workspace:
         #ignore thermal bands for all Landsats
@@ -77,36 +107,6 @@ def calibrateReflectance(cwd,dist,sunElev):
         ds = None
         output = None
         band = None
-       
-def earthSunDist(txtfile, doy):
-    txt = open(txtfile,'r')
-    distance = 0
-    for i in txt:
-        if doy in i:
-            line = i.strip().split('\t')
-            distance = float(line[1])
-        else:
-            'Cannot find date of year.'
-    return distance
-    
-def retrieveDOY(fN):
-    s = fN.strip().split('_')
-    return s[0][13:16]
-               
-def collectSunElev(f):
-    txt = open(f, 'r')
-    for i in txt:
-        if 'SUN_ELEVATION' in i:
-            value = i.strip().split('=')
-            return (pi/180)*float(value[1])
-        else:
-            pass
-    close.txt()
-    
-def modifyName(nom):
-    """Returns modified input file name string."""
-    fn = nom.strip().split('_RADIANCE.TIF')
-    return fn[0]+'_REFLECTANCE.TIF'
               
 def main():
     start = time.time()
