@@ -27,7 +27,7 @@ def findMTL(cwd):
 def modifyName(nom):
     """Returns modified input file name string."""
     fn = nom.strip().split('.TIF')
-    return fn[0]+'_CALIBRATED.TIF'
+    return fn[0]+'_RADIANCE.TIF'
 
 def collectValues(cwd):
     """Reads metadata txt file and retrieves and then returns a list of calibrateRadiance values."""
