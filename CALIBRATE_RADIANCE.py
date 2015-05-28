@@ -93,25 +93,20 @@ def calibrateRadiance(cwd):
     tups = sortValues(resValue)
     dirlist = os.listdir(cwd)
     
-    print resValue
-    
     for f in dirlist:
-        if 'B10' in f:
+        if 'B10_CMSK' in f:
             thermList.append(f)
-        elif 'B11' in f: 
+        elif 'B11_CMSK' in f: 
             thermList.append(f)
-        elif 'B8' in f: #ignore panchromatic for Landsat 7 and 8
+        elif 'B8_CMSK' in f: #ignore panchromatic for Landsat 7 and 8
             pass
-        elif 'VCID_1' in f:
+        elif 'VCID_1_CMSK' in f:
             thermList.append(f)
-        elif 'VCID_2' in f:
+        elif 'VCID_2_CMSK' in f:
             thermList.append(f)
-        elif '.TIF' in f:
+        elif '_CMSK.TIF' in f:
             tifList.append(f)
 
-    print tifList
-    print thermList
-    print tups
     for i,j,k in zip(tifList,tups[0],tups[1]):
         ds = gdal.Open(i, GA_ReadOnly)
         cols = ds.RasterXSize
