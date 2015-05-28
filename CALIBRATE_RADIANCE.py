@@ -6,7 +6,7 @@ import time
 import sys
 
 def setcwd():
-    """Sets current working directory of the script."""
+    """Sets the current working directory of the script."""
     cwd = os.getcwd()
     return cwd
 
@@ -116,8 +116,8 @@ def calibrateRadiance(cwd):
         projection = ds.GetProjection()
         driver = ds.GetDriver()
         
-        print 'Calibrating ' + i
-        print "Columns: %d\nRows: %d" % (rows, cols)
+        print i, j, k
+        print "Columns: %d\nRows: %d\nBands: %d" % (rows, cols, bands)
         data = ds.ReadAsArray(0,0,cols,rows).astype('float32')
         
         rArray = resValue[j]*data+resValue[k]
@@ -146,8 +146,8 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         projection = ds.GetProjection()
         driver = ds.GetDriver()
         
-        print 'Calibrating' + l
-        print "Columns: %d\nRows: %d" % (rows, cols)
+        print l, m, n
+        print "Columns: %d\nRows: %d\nBands: %d" % (rows, cols, bands)
         data = ds.ReadAsArray(0,0,cols,rows).astype('float32')
         
         rArray = resMain[m]*data+resMain[n]

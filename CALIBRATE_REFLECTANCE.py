@@ -80,23 +80,23 @@ def modifyName(nom):
 
 def calibrateReflectance(cwd,sunElev):
     """Calibrates radiance image to reflectance."""
-    caList = [] 
+    caList = []
     eSun = {1:1997,2:1812,3:1533,4:1039,5:230.8,7:84.90,8:1362}
     dist = earthSunDist()
     
     for i in workspace:
         #ignore thermal bands for all Landsats
-        if 'B10_RADIANCE' in i:
+        if 'B10_CMSK_RADIANCE' in i:
             pass
-        elif 'B11_RADIANCE' in i:
+        elif 'B11_CMSK_RADIANCE' in i:
             pass
-        elif 'VCID_1_RADIANCE' in i:
+        elif 'VCID_1_CMSK_RADIANCE' in i:
             pass
-        elif 'VCID_2_RADIANCE' in i:
+        elif 'VCID_2_CMSK_RADIANCE' in i:
             pass
-        elif 'B6_RADIANCE' in i:
+        elif 'B6_CMSK_RADIANCE' in i:
             pass
-        elif 'RADIANCE' in i:
+        elif 'CMSK_RADIANCE' in i:
             caList.append(i)
 
     for j,k in zip(caList,sorted(eSun)): 
