@@ -115,11 +115,13 @@ def calibrateRadiance(cwd):
         
         print 'Calibrating ' + i
         print "Columns: %d\nRows: %d" % (rows, cols)
-              
+
+        #create output dataset      
         oDs = driver.Create(modifyName(i),cols,rows,1, GDT_Float32)
         oDs.SetProjection(projection)
         oDs.SetGeoTransform(geotrans)
         oBand = oDs.GetRasterBand(1)
+        
         #blocking
         xbs = 500
         ybs = 500
@@ -162,24 +164,46 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         geotrans = ds.GetGeoTransform()
         projection = ds.GetProjection()
         driver = ds.GetDriver()
-        
+         
         print 'Calibrating ' + l
         print "Columns: %d\nRows: %d" % (rows, cols)
-        data = ds.ReadAsArray(0,0,cols,rows).astype('float32')
-        
-        rArray = resMain[m]*data+resMain[n]
-      
+
+        #create output dataset for thermal images
         oDs = driver.Create(modifyName(l),cols,rows,1, GDT_Float32)
         oDs.SetProjection(projection)
         oDs.SetGeoTransform(geotrans)
         oBand = oDs.GetRasterBand(1)
-        oBand.WriteArray(rArray, 0, 0)
-        oBand.FlushCache()
         
+        #blocking
+        xbs = 500
+        ybs = 500
+
+        for i range(0, rows, ybs):
+            if rows > i + ybs:
+                numrows = ybs
+            else:
+                numrows = rows - i
+            for j in range(0, cols, xbs):
+                if cols > j + xbs:
+                    numcols = xbs
+                else:
+                    numcols = cols - j
+                
+                data = ds.ReadAsArray(j,i,numcols,numrows).astype('float32')
+                
+                rArray = resMain[m]*data+resMain[n]
+              
+                oBand.WriteArray(rArray, i, j)
+                
+        oBand.FlushCache()
+
+        #memory management
         ds = None
         data = None
+        rArray = None
         oDs = None
-            
+        oBand = None
+        
 def main():
     start = time.time()
     workdir = setcwd()
