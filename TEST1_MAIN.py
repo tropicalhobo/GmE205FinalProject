@@ -5,6 +5,7 @@ import time as tm
 import sys
 import MASK_CLOUD as mc
 import CALIBRATE_RADIANCE as cr
+import CALIBRATE_REFLECTANCE as cref
 
 def main():
     start = tm.time()
@@ -14,6 +15,7 @@ def main():
     mc.cloudmask(fmaskout,workdir)
     #calibrate
     cr.calibrateRadiance(workdir)
+    cref.calibrateReflectance(workdir)
 
     print 'Script process took %f seconds' % (tm.time()-start)
     
