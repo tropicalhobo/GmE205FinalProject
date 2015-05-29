@@ -178,7 +178,7 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         xbs = 500
         ybs = 500
 
-        for i range(0, rows, ybs):
+        for i in range(0, rows, ybs):
             if rows > i + ybs:
                 numrows = ybs
             else:

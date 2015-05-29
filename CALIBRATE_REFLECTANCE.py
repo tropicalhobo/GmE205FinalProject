@@ -109,16 +109,37 @@ def calibrateReflectance(cwd):
         geotrans, proj = ds.GetGeoTransform(), ds.GetProjection()
         driver = ds.GetDriver()
 
-        data = ds.ReadAsArray(0,0,cols,rows)
-        reflectance = (pi*data*dist**2)/(eSun[k]*sin(sunelev))
-
+        #create output data set
         output = driver.Create(modifyName(j),cols,rows,1,GDT_Float32)
         band = output.GetRasterBand(1)
-        band.WriteArray(reflectance)
+        
+        #blocking
+        xbs = 500
+        ybs = 500
+
+        for i in range(0, rows, ybs):
+            if rows > i + ybs:
+                numrows = ybs
+            else:
+                numrows = rows - i
+            for j in range(0, cols, xbs):
+                if cols > j + xbs:
+                    numcols = xbs
+                else:
+                    numcols = cols - j
+                
+                data = ds.ReadAsArray(j,i,numcols,numrows)
+                
+                reflectance = (pi*data*dist**2)/(eSun[k]*sin(sunelev))
+
+                band.WriteArray(reflectance,i,j)
+                
         band.FlushCache()
+        
         ds = None
         output = None
         band = None
+        reflectance = None
               
 def main():
     start = time.time()
