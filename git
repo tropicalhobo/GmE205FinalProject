@@ -1,0 +1,123 @@
+[33mcommit 04a2a81ce97ed5b05ec98ab22b9170af4e8e63ff[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Sat May 30 00:16:47 2015 +0800
+
+    	new file:   TRANSFORM_NDBI_blocking.py
+
+[33mcommit 14d8bd00f26003faf7f5ca9883aa8d7fedfdf1c3[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 22:37:48 2015 +0800
+
+    	modified:   TRANSFORM_NDBI.py
+
+[33mcommit 750d54df26b219122f578928d7b22d9f32065eee[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 21:33:03 2015 +0800
+
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit 6ba545644b4a44769807c0fe4ac9005a08d30b53[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 21:26:14 2015 +0800
+
+    	modified:   TRANSFORM_NDBI.py
+
+[33mcommit ee743cf603db26ad67734c9d8903756a3d7d6899[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 21:22:36 2015 +0800
+
+    	new file:   CONVERT_TORASTER.py
+    	modified:   TRANSFORM_NDBI.py
+
+[33mcommit 507289de2f997c94b7246b2450666e179732022d[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 21:07:20 2015 +0800
+
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit 223f65514464fe91d5ad20d4d324c5493e7cf599[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 20:58:24 2015 +0800
+
+    	modified:   TEST1_MAIN.py
+
+[33mcommit 16e399b89adfb1c430c56abe1254b17d5ff69c8d[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 20:56:57 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit 8d8af50da1b54e6f792357c06096ec8859094aab[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Fri May 29 20:38:04 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	modified:   TEST1_MAIN.py
+
+[33mcommit 8634b7effd3d6ed3f6a3d09d7c5ec99f51efeadc[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 22:04:44 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit c2d9dd1fcdb52ec59cb11cc677307da3d4f74f97[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 20:59:45 2015 +0800
+
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit 83a401c122e0f0f9a4b11fceb6267cc47e4ed277[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 20:56:04 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit bdc4103faab35253b24c1a4b16e0eb6048ca21eb[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 17:05:57 2015 +0800
+
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit 8b7aec8f9c40ea0a726668cf124c1d963126844b[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 16:49:22 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	modified:   CALIBRATE_REFLECTANCE.py
+
+[33mcommit ba569c57695678d21dd4f4b1c9796663aea40848[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 15:41:54 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+
+[33mcommit 39d92ca07e742960686e7e47c243867112181c46[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 15:36:31 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	modified:   MASK_CLOUD.py
+    	new file:   TEST1_MAIN.py
+
+[33mcommit cffd2596feffc1218267ce83a89e18e6a470cdff[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 15:07:32 2015 +0800
+
+    	modified:   CALIBRATE_RADIANCE.py
+    	new file:   MASK_CLOUD.pyc
+
+[33mcommit 701d68a9bc54896c05d24f91cd7746f0182f097c[m
+Author: tropicalhobo <jose.torres@obf.ateneo.edu>
+Date:   Thu May 28 13:34:50 2015 +0800
+
+    	new file:   CALIBRATE_RADIANCE.py
+    	new file:   CALIBRATE_REFLECTANCE.py
+    	new file:   EARTH-SUN_DISTANCE_AU.txt
+    	new file:   MASK_CLOUD.py
+    	new file:   MASK_CLOUD_blocking.py
+    	new file:   MASK_CLOUD_blocking_batch.py
+    	new file:   TRANSFORM_NDBI.py
+    	new file:   TRANSFORM_NDVI.py
