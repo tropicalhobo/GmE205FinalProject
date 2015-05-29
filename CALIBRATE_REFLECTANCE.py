@@ -104,15 +104,15 @@ def calibrateReflectance(cwd):
         elif 'CMSK_RADIANCE' in i:
             caList.append(i)
 
-    for j,k in zip(caList,sorted(eSun)): 
+    for j,k in zip(caList,sorted(eSun)):
+        print 'Calibrating ' + j + ' to Reflectance.'
         ds = gdal.Open(j, GA_ReadOnly)
         cols, rows = ds.RasterXSize, ds.RasterYSize
         geotrans, proj = ds.GetGeoTransform(), ds.GetProjection()
         driver = ds.GetDriver()
 
         data = ds.ReadAsArray(0,0,cols,rows)
-        print j, eSun[k]
-        reflectance = (pi*data*dist**2)/(eSun[k]*sin(sunElev))
+        reflectance = (pi*data*dist**2)/(eSun[k]*sin(sunelev))
 
         output = driver.Create(modifyName(j),cols,rows,1,GDT_Float32)
         band = output.GetRasterBand(1)
