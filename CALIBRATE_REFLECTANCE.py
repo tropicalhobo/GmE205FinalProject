@@ -54,6 +54,7 @@ def earthSunDist(txtfile, doy):
             distance = float(line[1])
         else:
             'Cannot find date of year.'
+    txt.close()
     return distance
     
 def retrieveDOY(fN):
@@ -78,11 +79,15 @@ def modifyName(nom):
     fn = nom.strip().split('_RADIANCE.TIF')
     return fn[0]+'_REFLECTANCE.TIF'
 
-def calibrateReflectance(cwd,sunElev):
+def calibrateReflectance(cwd):
     """Calibrates radiance image to reflectance."""
     caList = []
+    mtl = findMTL(cwd)
+    distfile = findDistance(cwd)
+    dist = earthSunDist(distfile,retrieveDOY(mtl))
+    sunelev = collectSunElev(mtl)
     eSun = {1:1997,2:1812,3:1533,4:1039,5:230.8,7:84.90,8:1362}
-    dist = earthSunDist()
+    workspace = os.listdir(cwd)
     
     for i in workspace:
         #ignore thermal bands for all Landsats

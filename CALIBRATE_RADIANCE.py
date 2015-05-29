@@ -1,9 +1,6 @@
-import os
-import gdal
+import os, gdal, time, sys
 from gdalconst import *
 import numpy as np
-import time
-import sys
 
 def setcwd():
     """Sets current working directory of the script."""
@@ -146,7 +143,7 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         projection = ds.GetProjection()
         driver = ds.GetDriver()
         
-        print 'Calibrating' + l
+        print 'Calibrating ' + l
         print "Columns: %d\nRows: %d" % (rows, cols)
         data = ds.ReadAsArray(0,0,cols,rows).astype('float32')
         
