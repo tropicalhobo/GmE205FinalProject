@@ -115,20 +115,40 @@ def calibrateRadiance(cwd):
         
         print 'Calibrating ' + i
         print "Columns: %d\nRows: %d" % (rows, cols)
-        data = ds.ReadAsArray(0,0,cols,rows).astype('float32')
-        #blocking
-        rArray = resValue[j]*data+resValue[k]
-      
+              
         oDs = driver.Create(modifyName(i),cols,rows,1, GDT_Float32)
         oDs.SetProjection(projection)
         oDs.SetGeoTransform(geotrans)
         oBand = oDs.GetRasterBand(1)
-        oBand.WriteArray(rArray, 0, 0)
-        oBand.FlushCache()
+        #blocking
+        xbs = 500
+        ybs = 500
+
+        for o in range(0, rows, ybs):
+            if rows > o + ybs:
+                numrows = ybs
+            else:
+                numrows = rows - o
+            for p in range(0, cols, xbs):
+                if cols > p + xbs:
+                    numcols = xbs
+                else:
+                    numcols = cols - p
+                    
+                data = ds.ReadAsArray(p,o,numcols,numrows).astype('float32')
         
+                rArray = resValue[j]*data+resValue[k]
+                
+                oBand.WriteArray(rArray, o, p)
+            
+        oBand.FlushCache()
+
+        #Memory management
         ds = None
         data = None
+        rArray = None
         oDs = None
+        oBand = None
 
     calibrateThermal(thermList, tups[2], tups[3], resValue)
 
