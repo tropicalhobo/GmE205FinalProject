@@ -24,11 +24,11 @@ def transformNDBI(cwd):
     
     for f in workspace:
         
-        if 'B4' in f: 
+        if 'B4_CMSK_REFLECTANCE.TIF' in f: 
             band4 = gdal.Open(f, GA_ReadOnly)
             fName = f
             print f
-        elif 'B5' in f:
+        elif 'B5_CMSK_REFLECTANCE.TIF' in f:
             band5 = gdal.Open(f, GA_ReadOnly)
             print f
 
