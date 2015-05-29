@@ -141,7 +141,7 @@ def calibrateRadiance(cwd):
         
                 rArray = resValue[j]*data+resValue[k]
                 
-                oBand.WriteArray(rArray, o, p)
+                oBand.WriteArray(rArray, p, o)
             
         oBand.FlushCache()
 
@@ -193,7 +193,7 @@ def calibrateThermal(band, tAdd, tMult, resMain):
                 
                 rArray = resMain[m]*data+resMain[n]
               
-                oBand.WriteArray(rArray, i, j)
+                oBand.WriteArray(rArray, j, i)
                 
         oBand.FlushCache()
 

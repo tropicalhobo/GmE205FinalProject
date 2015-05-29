@@ -132,7 +132,7 @@ def calibrateReflectance(cwd):
                 
                 reflectance = (pi*data*dist**2)/(eSun[k]*sin(sunelev))
 
-                band.WriteArray(reflectance,i,j)
+                band.WriteArray(reflectance,j,i)
                 
         band.FlushCache()
         
