@@ -116,7 +116,7 @@ def calibrateRadiance(cwd):
         print 'Calibrating ' + i
         print "Columns: %d\nRows: %d" % (rows, cols)
         data = ds.ReadAsArray(0,0,cols,rows).astype('float32')
-        
+        #blocking
         rArray = resValue[j]*data+resValue[k]
       
         oDs = driver.Create(modifyName(i),cols,rows,1, GDT_Float32)
