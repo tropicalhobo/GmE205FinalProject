@@ -1,7 +1,7 @@
 import gdal
 from gdalconst import *
 import numpy as np
-import os, sys. time
+import os, sys, time
 from math import sqrt
 
 def setcwd():
@@ -11,7 +11,7 @@ def setcwd():
 
 def modifyName(nom):
     """Returns modified input file name string."""
-    fn = nom.strip().split('CMSK_REFLECTANCE.TIF')
+    fn = nom.strip().split('.TIF')
     return fn[0] + '_NDBI.TIF'
 
 def transformNDBI(cwd):
@@ -31,9 +31,12 @@ def transformNDBI(cwd):
         elif 'B5' in f:
             band5 = gdal.Open(f, GA_ReadOnly)
             print f
-        else:
-            print 'Cannot find images.'
-            sys.exit(1)
+
+    if band4 == None or band5 == None:
+        print 'Cannot find images.'
+        sys.exit(1)
+    else:
+        pass
            
     b4cols, b4rows = band4.RasterXSize, band4.RasterYSize
     b5cols, b5rows = band5.RasterXSize, band5.RasterYSize
