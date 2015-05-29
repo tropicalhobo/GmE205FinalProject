@@ -1,10 +1,8 @@
-import os
 import gdal
 from gdalconst import *
 import numpy as np
-import time
+import os, sys, time
 from math import pi, sin
-import sys
 
 def setcwd():
     """Sets current working directory of the script."""
