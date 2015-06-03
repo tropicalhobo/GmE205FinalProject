@@ -116,6 +116,9 @@ def calibrateReflectance(cwd):
         band = output.GetRasterBand(1)
         band.WriteArray(reflectance)
         band.FlushCache()
+
+        reflectance = None
+        data = None
         ds = None
         output = None
         band = None

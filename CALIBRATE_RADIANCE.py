@@ -129,7 +129,7 @@ def calibrateRadiance(cwd):
         ds = None
         data = None
         oDs = None
-
+        rArray = None
     calibrateThermal(thermList, tups[2], tups[3], resValue)
 
 def calibrateThermal(band, tAdd, tMult, resMain):
@@ -159,6 +159,8 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         ds = None
         data = None
         oDs = None
+        rArray = None
+        oBand = None
             
 def main():
     start = time.time()
