@@ -135,7 +135,13 @@ def calibrateReflectance(cwd):
                 band.WriteArray(reflectance,j,i)
                 
         band.FlushCache()
+<<<<<<< HEAD
         
+=======
+
+        reflectance = None
+        data = None
+>>>>>>> master
         ds = None
         output = None
         band = None
