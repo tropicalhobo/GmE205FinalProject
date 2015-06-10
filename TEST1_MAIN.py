@@ -5,7 +5,7 @@ import time as tm
 import MASK_CLOUD as mc
 import CALIBRATE_RADIANCE as crad
 import CALIBRATE_REFLECTANCE as cref
-import TRANSFORM_NDBI as tn
+#import TRANSFORM_NDBI as tn
 
 def main():
     start = tm.time()
