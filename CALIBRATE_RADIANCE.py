@@ -151,11 +151,15 @@ def calibrateRadiance(cwd):
         rArray = None
         oDs = None
 <<<<<<< HEAD
+<<<<<<< HEAD
         oBand = None
 
 =======
         rArray = None
 >>>>>>> master
+=======
+        rArray = None
+>>>>>>> 8a348076a2d64e5abda14dcdaa7152447db9f60d
     calibrateThermal(thermList, tups[2], tups[3], resValue)
 
 def calibrateThermal(band, tAdd, tMult, resMain):
@@ -207,9 +211,12 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         rArray = None
         oDs = None
 <<<<<<< HEAD
+<<<<<<< HEAD
         oBand = None
         
 =======
+=======
+>>>>>>> 8a348076a2d64e5abda14dcdaa7152447db9f60d
         rArray = None
         oBand = None
             
