@@ -60,7 +60,9 @@ def cloudmask(cloud, cwd):
         if landsatImg == None:
             print 'Cannot find Landsat Image.'
             sys.exit(1)
-
+        else:
+            print 'Masking cloud and cloud shadows for: ' + i
+        
         #retrieve image attributes
         cols, rows = landsatImg.RasterXSize, landsatImg.RasterYSize
         proj, geotrans = landsatImg.GetProjection(), landsatImg.GetGeoTransform()

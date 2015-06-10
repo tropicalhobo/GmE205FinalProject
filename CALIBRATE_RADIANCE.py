@@ -150,8 +150,12 @@ def calibrateRadiance(cwd):
         data = None
         rArray = None
         oDs = None
+<<<<<<< HEAD
         oBand = None
 
+=======
+        rArray = None
+>>>>>>> master
     calibrateThermal(thermList, tups[2], tups[3], resValue)
 
 def calibrateThermal(band, tAdd, tMult, resMain):
@@ -202,8 +206,14 @@ def calibrateThermal(band, tAdd, tMult, resMain):
         data = None
         rArray = None
         oDs = None
+<<<<<<< HEAD
         oBand = None
         
+=======
+        rArray = None
+        oBand = None
+            
+>>>>>>> master
 def main():
     start = time.time()
     workdir = setcwd()
